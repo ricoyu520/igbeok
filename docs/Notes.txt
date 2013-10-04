@@ -1,0 +1,71 @@
+2/18/2013 Monday
+添加多数据源切换演示， 用AOP注解自动切换数据源， 无需人工干预。
+
+2013-05-07 Tuesday
+org.springframework.context.support.ReloadableResourceBundleMessageSource默认不在CLASSPATH下找resource文件，给basenames值添加classpath:前缀
+<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+	<property name="basenames" value="classpath:i18n/messages"/>
+	<property name="defaultEncoding" value="utf-8"/>
+	<property name="cacheSeconds" value="1"/>
+</bean>
+
+2013-05-07
+移除自定义的com.igbeok.http.converter.UTF8StringHttpMessageConverter，采用Spring自带的StringHttpMessageConverter，并提供一个默认的charset UTF-8以支持@ResponseBody输出中文。
+<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+	<property name = "messageConverters">
+	<list>
+		<bean class = "com.igbeok.http.converter.UTF8StringHttpMessageConverter">
+			<property name = "supportedMediaTypes">
+				<list>
+					<value>text/plain;charset=UTF-8</value>
+				</list>
+			</property>
+		</bean>
+	</list>
+</property>
+改为：
+<mvc:annotation-driven validator="jsr303Validator">
+	<mvc:message-converters register-defaults="true">
+		<bean class = "org.springframework.http.converter.StringHttpMessageConverter">
+			<constructor-arg value="UTF-8"/>
+		</bean>
+	</mvc:message-converters>
+</mvc:annotation-driven>
+
+4/12013 Monday
+百度地图图标应用的css,应用到一个div上
+-webkit-background-clip: border-box;
+-webkit-background-origin: padding-box;
+-webkit-background-size: auto;
+background-attachment: scroll;
+background-clip: border-box;
+background-color: rgba(0, 0, 0, 0);
+background-image: url(http://s0.map.bdimg.com/image/markers_new_wn5i2b.png);
+background-origin: padding-box;
+background-position: 0px -230px;
+background-size: auto;
+border-collapse: separate;
+color: rgb(0, 0, 0);
+cursor: pointer;
+display: block;
+font-family: arial, 宋体, sans-serif;
+font-size: 12px;
+font-style: normal;
+font-variant: normal;
+font-weight: bold;
+height: 29px;
+line-height: 18px;
+margin-bottom: 0px;
+margin-left: 7px;
+margin-right: 0px;
+margin-top: 4px;
+text-align: left;
+width: 19px;
+zoom: 1;
+
+CXF JSR311 RESTful Web Service
+<dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+      <version>${cxf.version}</version>
+</dependency>
