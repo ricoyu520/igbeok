@@ -1,0 +1,58 @@
+@CHARSET "UTF-8";
+* {
+	vertical-align: baseline;
+	font-family: inherit;
+	font-style: inherit;
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+body {
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+	outline: none;
+	vertical-align: baseline;
+	font-family: Verdana, sans-serif, '宋体';
+	font: 14px;
+	line-height: 18px;
+	color: #333;
+}
+h1, h2, h3, h4, h5, h6, p, pre, blockquote, form, ul, ol, dl {
+	margin: 20px 0;
+}
+li, dd, blockquote {
+	margin-left: 40px;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+ol, ul {
+	list-style: none;
+}
+li, dd, blockquote {
+	margin-left: 40px;
+}
+dt {
+	font-weight: bold;
+}
+address, caption, cite, code, dfn, em, strong, th, var {
+	font-weight: normal;
+	font-style: normal;
+}
+caption, th {
+	text-align: left;
+}
+abbr, acronym {
+	border: 0;
+}
+
+a, ins {
+	text-decoration: none;
+}

@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+body {
+	font-size: 62.5%;
+	margin: 0 10% 0 10% auto;
+}
+
+header {
+	border: 1px solid black ;
+}
+
+div {
+	border:  1px solid black;
+	width: 80%;
+	height: 90%;
+	
+}

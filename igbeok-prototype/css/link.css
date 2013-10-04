@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+div {
+    width: 20%;
+}
+
+a {
+    padding-right: 25px;
+    border: 1px dotted #000;
+}
+
+a:link {
+    color: #F00;
+    background: url(../img/check_right.gif) no-repeat right center;
+}
+
+a:visited {
+    color: #999;
+}
+
+a:hover {
+    color: #333;
+}
+a:active {
+    color: #000;
+}

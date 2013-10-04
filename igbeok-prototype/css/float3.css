@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+.news {
+	background-color: gray;
+	border: solid 1px black;
+	/*overflow: hidden;*/
+}
+
+.news img {
+	float: left;
+}
+
+.news p {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+.news:after {
+	content: "";
+	height: 0;
+	visibility: hidden;
+	display: block;
+	clear: both;
+}

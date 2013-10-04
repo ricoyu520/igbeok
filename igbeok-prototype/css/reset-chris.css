@@ -1,0 +1,37 @@
+@CHARSET "UTF-8";
+/*
+
+ Reset Default Browser Styles
+ - Place first in the listing of external style sheets for cascading.
+ - Be sure to explicitly set margin/padding styles.
+ - Styles are not reset that have to do with display (block, inline) are not reset.
+
+ By: Chris Poteet & various influences
+
+ */
+
+* {
+	vertical-align: baseline;
+	font-family: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+body {
+	padding: 5px;
+}
+h1, h2, h3, h4, h5, h6, p, pre, blockquote, form, ul, ol, dl {
+	margin: 20px 0;
+}
+li, dd, blockquote {
+	margin-left: 40px;
+}
+dt {
+	font-weight: bold;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}

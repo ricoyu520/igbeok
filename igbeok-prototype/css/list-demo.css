@@ -1,0 +1,103 @@
+@CHARSET "UTF-8";
+
+div {
+    border: 1px solid #CCC;
+    padding: 20px;
+    width: 38%;
+    margin: 5px auto 5px auto;
+}
+
+div:nth-of-type(1) ul {
+    /**list-style-type: circle;
+     list-style-type: none;*/
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+}
+
+div:nth-of-type(2) ul {
+    list-style-position: inside;
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
+    width: 250px;
+}
+div:nth-of-type(3) ul {
+    list-style-position: inside;
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 5px;
+    width: 250px;
+}
+div:nth-of-type(4) ul {
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 0 0 0 25px;
+    width: 200px;
+    list-style-image: url(../img/arrow1.png);
+}
+div:nth-of-type(5) ul {
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 0 0 0 25px;
+    width: 200px;
+    list-style-image: url(../img/arrow1.png);
+    line-height: 150%;
+}
+div:nth-of-type(6) ul {
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    list-style: none;
+    line-height: 150%;
+}
+
+div:nth-of-type(6) ul>li {
+    background: transparent url(../img/arrow1.png) no-repeat center left;
+    padding-left: 15px;
+}
+
+div:nth-of-type(7) ul {
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
+    line-height: 150%;
+}
+
+div:nth-of-type(7) ul>li {
+    display: inline;
+}
+div:nth-of-type(8) ul {
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
+    line-height: 150%;
+}
+
+div:nth-of-type(8) ul>li {
+    display: inline;
+    background: transparent url(../img/arrow1.png) left center no-repeat;
+    padding-left: 15px;
+    margin-bottom: 10px;
+}
+
+div:nth-of-type(9) ul {
+    border: 1px solid #333;
+    list-style-type: none;
+    margin: 5px;
+    padding: 2px;
+    width: 156px;
+    font: bold 12px 'Lucida Grande', Verdana, sans-serif;
+}
+
+div:nth-of-type(9) ul>li {
+    padding: 2px 10px;
+    background: #DDD;
+    margin: 0;
+    border-left: 1px solid #fff;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #666;
+    border-bottom: 1px solid #aaa;
+}

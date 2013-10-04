@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+p {
+    text-transform: capitalize;
+    text-shadow: 1px 1px 1px;
+}

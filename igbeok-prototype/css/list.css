@@ -1,0 +1,58 @@
+#container {
+    border:1px solid #000000;
+    overflow: auto;
+}
+
+#container ul {
+    border: 1px solid #000000;
+    margin-left: 20px;
+    width: 200px;
+}
+
+
+#container #styleNone {
+    list-style-type: none;
+}
+
+#container #styleRoman {
+    list-style-type: upper-roman;
+}
+
+#container #styleMargin{
+    margin: 0 0 20px 20px;
+    width: 200px;
+    padding: 0;
+}
+#container #styleInside{
+    margin: 0 0 20px 20px;
+    width: 200px;
+    padding-left: 5px;
+    list-style-position: inside;
+}
+#container #styleImage{
+    margin: 0 0 20px 20px;
+    width: 200px;
+    padding-left: 5px;
+    list-style-position: inside;
+    list-style-image: url(../img/qq.png);
+}
+#container #styleBackgroundImage {
+    list-style: none;
+    border: #000000 solid 1px;
+    margin: 0 0 20px 20px;
+    width: 200px;
+    padding: 5px;
+}
+#container #styleBackgroundImage li {
+    background: transparent url(../img/qq.png) no-repeat left center;
+    padding-left: 25px;
+}
+
+#container #styleInline {
+    padding: 25px;
+    width: 1000px;
+}
+#container #styleInline li{
+    display: inline;
+    padding: 5px;
+}

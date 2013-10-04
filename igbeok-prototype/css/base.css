@@ -1,0 +1,19 @@
+/*margin和padding默认都是0， 但是有些浏览器的默认样式给这两项设置了值， 所以这里重置为默认值*/
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	background-color: rgb(244, 244, 244);
+}
+
+a {
+	color: #08c;
+	text-decoration: none;
+}
+
+a:hover {
+    color: #005580;
+	text-decoration: underline;
+}
