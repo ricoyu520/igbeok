@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">  
+  
+<tiles-definitions>  
+  
+	<definition name=".backend.useradmin" template="/backend/useradmin/template/useradmin_template.jsp">
+		<put-attribute name="title" value="Linksys" />
+		<put-attribute name="sidebar" value="/backend/useradmin/template/sidebar.jsp" />
+	</definition>
+
+	<definition name=".backend.useradmin.*.*" extends=".backend.useradmin">
+		<put-attribute name="body" value="/backend/useradmin/{1}/{2}.jsp" />
+	</definition>
+	
+	<!-- 
+	.backend.useradmin.user.my-information
+	.backend.useradmin.user.edit-information
+	.backend.useradmin.user.change-password
+	.backend.useradmin.user.list-users
+	.backend.useradmin.contact.add-contact
+	.backend.useradmin.contact.add-group
+	.backend.useradmin.contact.list-contact
+	.backend.useradmin.contact.list-groups
+	 -->
+  
+</tiles-definitions>    
+
+

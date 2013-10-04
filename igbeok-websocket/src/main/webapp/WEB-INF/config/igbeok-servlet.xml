@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:jms="http://www.springframework.org/schema/jms" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd  
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.2.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd  
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd  
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd  
+        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd  
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd  
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd  
+        http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-3.2.xsd  
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd  
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<context:property-placeholder location="classpath*:*.properties" />
+	
+	<context:component-scan base-package="com.igbeok.**.controller" >
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+<!-- 	
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name = "messageConverters">
+		<list>
+			<bean class = "com.igbeok.http.converter.UTF8StringHttpMessageConverter">
+				<property name = "supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</list>
+	</property>
+	</bean> -->
+	
+	<!-- annotation-driven会扫描HibernateValidator是否存在， 存在即自动注册， 这边声明自定义的是为了customize消息文件， 
+		 默认的错误消息文件是classpath下的ValidationMessages.properties -->
+	<mvc:annotation-driven validator="jsr303Validator">
+		<mvc:message-converters register-defaults="true">
+			<bean class = "org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8"/>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources/ directory -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames" value="classpath:i18n/messages"/>
+		<property name="defaultEncoding" value="utf-8"/>
+		<property name="cacheSeconds" value="1"/>
+	</bean>
+<!-- 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames" value="i18n/messages"/>
+	</bean> -->
+
+<!-- 	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver"
+		p:cookieName="clientLanguage" p:cookieMaxAge="100000" p:cookiePath="/" p:defaultLocale="zh_CN" /> -->
+	
+	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="locale"/>
+	</mvc:interceptors>
+	
+	<!-- 默认在ValidationMessages.properties里找error message， 我不想这样， 所以手工配置一个LocalValidatorFactoryBean -->
+	<bean id="jsr303Validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource"/>
+	</bean>
+	
+	<!-- Only needed because we require fileupload -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- <property name="maxUploadSize" value="100000"/> -->
+	</bean>
+ 	
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/config/tiles-config/tiles_defs.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- REST中根据URL后缀自动判定Content-Type及相应的View -->
+	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+	    <property name="mediaTypes" >
+	        <value>
+	            json=application/json
+	            xml=application/xml
+	        </value>
+	    </property>
+	</bean>
+
+	<bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.tiles2.TilesViewResolver"
+		p:order="1" />
+	
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<!-- <property name="prefix" value="/WEB-INF/views/" />-->
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+		
+	
+	<!-- exceptionResolver -->	
+	<bean id="handlerExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<!-- <property name="exceptionMappings">
+			<props>
+				<prop key="org.springframework.security.access.AccessDeniedException">error/access-denied</prop>
+				<prop key="java.sql.SQLException">backend/useradmin/error/RuntimePage</prop>
+				<prop key="oracle.jdbc.driver.OracleSQLException">backend/useradmin/error/RuntimePage2</prop>
+				<prop key="java.lang.Exception">backend/useradmin/error/RuntimePage</prop>
+				<prop key="java.lang.Throwable">backend/useradmin/error/RuntimePage</prop>
+				<prop key="org.springframework.beans.NotReadablePropertyException">backend/useradmin/error/RuntimePage</prop>
+			</props>
+		</property>
+		<property name="statusCodes">
+			<props>
+				<prop key="backend/useradmin/error/defaultErrorPage">500</prop>
+				<prop key="backend/useradmin/error/RuntimePage">500</prop>
+			</props>
+		</property> -->
+		<property name="warnLogCategory" value="以下为警告信息" />
+		<!-- <property name="defaultErrorView" value="backend/useradmin/error/defaultErrorPage" /> -->
+		<property name="defaultStatusCode" value="500" />
+	</bean>
+</beans>
